@@ -10,7 +10,11 @@ Página simples que mostra o preço do Bitcoin com dados gratuitos da [CoinGecko
   o gráfico e a tabela com mínimo, máximo, média e variação do período.
 - **Botão BRL / USD** para ver os valores em reais ou dólares.
 
-## Como abrir
+## Ver online
+O dashboard está publicado em: **https://estevaodesi6ner-collab.github.io/dashboard-bitcoin/**
+(funciona no computador e no celular). Cada `git push` para o GitHub atualiza o site em cerca de 1 minuto.
+
+## Como abrir no computador
 1. Dê dois cliques no arquivo `index.html`. Ele abre no seu navegador (Chrome, Edge, Firefox…).
 2. Pronto! É preciso estar conectado à internet.
 

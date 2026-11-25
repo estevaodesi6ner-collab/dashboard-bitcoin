@@ -172,4 +172,6 @@ Cada fase é pequena, testada no navegador e salva com um **commit** no Git (um 
 - Outras moedas (Ethereum etc.).
 - Gráfico de volume negociado.
 - Histórico com mais de 1 ano (exigiria outra API ou chave da CoinGecko).
-- Publicar o site gratuitamente (GitHub Pages).
+- [x] Publicar o site gratuitamente (GitHub Pages) — feito em 25/11/2026:
+      https://estevaodesi6ner-collab.github.io/dashboard-bitcoin/ (repositório público
+      `estevaodesi6ner-collab/dashboard-bitcoin`; commits usam o e-mail "de fachada" noreply do GitHub).
