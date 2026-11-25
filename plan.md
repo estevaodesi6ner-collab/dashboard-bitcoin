@@ -127,9 +127,9 @@ Cada fase é pequena, testada no navegador e salva com um **commit** no Git (um 
 - **Pronto quando:** abrir `index.html` mostra o layout com espaços vazios, sem erros no console (F12).
 
 ### Fase 2 — Primeiros dados reais
-- [ ] Criar `buscarDados`, `formatarMoeda`, `formatarData`.
-- [ ] Preencher o cartão "Preço atual" e "Var. 24h" com `/simple/price`.
-- [ ] Mostrar "Carregando…" enquanto espera e mensagem amigável em caso de erro.
+- [x] Criar `buscarDados`, `formatarMoeda`, `formatarData`.
+- [x] Preencher o cartão "Preço atual" e "Var. 24h" com `/simple/price`.
+- [x] Mostrar "Carregando…" enquanto espera e mensagem amigável em caso de erro.
 - **Pronto quando:** o preço real do Bitcoin aparece na tela.
 
 ### Fase 3 — Gráfico semanal
