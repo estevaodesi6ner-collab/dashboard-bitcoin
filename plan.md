@@ -42,7 +42,7 @@ URL base: `https://api.coingecko.com/api/v3`
 | Cartões de resumo (preço atual e variação 24h) | `/simple/price?ids=bitcoin&vs_currencies=brl,usd&include_24hr_change=true` |
 | Gráfico semanal | `/coins/bitcoin/market_chart?vs_currency=brl&days=7` |
 | Gráfico anual | `/coins/bitcoin/market_chart?vs_currency=brl&days=365` |
-| Período personalizado | `/coins/bitcoin/market_chart/range?vs_currency=brl&from=<unix>&to=<unix>` |
+| Período personalizado | **nenhuma chamada**: recorta os dados semanais/anuais já carregados (ver fase 5) |
 
 **Formato da resposta de `market_chart`:**
 ```json
@@ -142,10 +142,13 @@ Cada fase é pequena, testada no navegador e salva com um **commit** no Git (um 
 - **Pronto quando:** o gráfico anual aparece com os meses no eixo X.
 
 ### Fase 5 — Seletor de período + histórico
-- [ ] Inputs de data com `min` = hoje − 365 dias e `max` = hoje.
-- [ ] Validação: início antes do fim, nada no futuro, nada além de 365 dias.
-- [ ] Botões de atalho (30d, 90d, 6m, 1a) que preenchem as datas automaticamente.
-- [ ] `carregarPeriodo` com `/market_chart/range` + tabela com mínimo, máximo, média e variação.
+- [x] Inputs de data com `min` = hoje − 365 dias e `max` = hoje.
+- [x] Validação: início antes do fim, nada no futuro, nada além de 365 dias.
+- [x] Botões de atalho (30d, 90d, 6m, 1a) que preenchem as datas automaticamente.
+- [x] `carregarPeriodo` + tabela com mínimo, máximo, média e variação.
+      Decisão: o período é **recortado dos dados já carregados** (anual = diário; última semana = por hora),
+      sem chamar `/market_chart/range`. Motivo: cada clique em atalho gerava uma chamada e a CoinGecko
+      passava a recusar por excesso de consultas ("Não foi possível conectar").
 - **Pronto quando:** escolher datas válidas atualiza o gráfico e a tabela; datas inválidas mostram aviso claro.
 
 ### Fase 6 — Acabamento

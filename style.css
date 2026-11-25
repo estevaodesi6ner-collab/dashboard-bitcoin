@@ -176,6 +176,20 @@ input[type="date"] {
 
 .dica { margin: 8px 0 var(--espaco); }
 
+.botao-atalho.ativo {
+  border-color: var(--laranja);
+  color: var(--laranja);
+}
+
+/* Aviso do seletor de período (ex.: data inicial depois da final) */
+.aviso {
+  margin: 0 0 var(--espaco);
+  padding: 8px 12px;
+  border-left: 3px solid var(--laranja);
+  background: rgba(247, 147, 26, 0.08);
+  border-radius: 4px;
+}
+
 /* ===== Estatísticas do período ===== */
 .estatisticas {
   display: grid;

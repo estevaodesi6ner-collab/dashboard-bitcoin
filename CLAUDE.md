@@ -16,8 +16,11 @@ Abrir `index.html` no navegador (dois cliques) ou usar a extensão Live Server d
 
 ## API (CoinGecko)
 - Base: `https://api.coingecko.com/api/v3`
-- `/simple/price`, `/coins/bitcoin/market_chart` (`days=7` e `days=365`) e `/coins/bitcoin/market_chart/range`.
-- `/range` recebe `from`/`to` em **segundos**; as respostas trazem datas em **milissegundos**.
+- Só 3 chamadas por atualização: `/simple/price` e `/coins/bitcoin/market_chart` (`days=7` e `days=365`).
+- O histórico personalizado **não chama a API**: recorta `precosSemanais`/`precosAnuais` já carregados.
+  Não reintroduza chamadas por clique (ex.: `/market_chart/range`) — elas estouravam o limite gratuito.
+- As respostas trazem datas em **milissegundos**.
+- Quando a CoinGecko recusa por excesso (429), o navegador costuma ver só "falha de conexão" (sem CORS na resposta).
 - Limites: dados só até **365 dias atrás**; poucas chamadas por minuto → sempre usar o cache de `buscarDados`,
   nunca criar atualização automática em loop, tratar o erro 429 com mensagem amigável.
 
