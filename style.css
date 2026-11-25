@@ -1,0 +1,206 @@
+/* ===== Cores e medidas usadas em toda a página ===== */
+:root {
+  --fundo: #0f1115;
+  --painel: #181b22;
+  --borda: #2a2f3a;
+  --texto: #e8eaed;
+  --texto-suave: #9aa0aa;
+  --laranja: #f7931a;   /* cor do Bitcoin */
+  --alta: #22c55e;      /* verde para alta */
+  --queda: #ef4444;     /* vermelho para queda */
+  --raio: 12px;
+  --espaco: 16px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--fundo);
+  color: var(--texto);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.5;
+}
+
+a { color: var(--laranja); }
+
+h1, h2 { margin: 0; }
+
+.texto-suave { color: var(--texto-suave); font-size: 0.875rem; }
+
+/* ===== Cabeçalho ===== */
+.cabecalho {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espaco);
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--espaco) calc(var(--espaco) * 1.5);
+  border-bottom: 1px solid var(--borda);
+}
+
+.cabecalho h1 { font-size: 1.5rem; }
+.logo { color: var(--laranja); }
+
+.cabecalho-acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+/* ===== Botões ===== */
+button {
+  font: inherit;
+  cursor: pointer;
+  border-radius: 8px;
+  border: 1px solid var(--borda);
+  background: var(--painel);
+  color: var(--texto);
+  padding: 6px 14px;
+}
+
+button:hover { border-color: var(--laranja); }
+
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--laranja);
+  outline-offset: 2px;
+}
+
+.seletor-moeda { display: inline-flex; }
+.seletor-moeda .botao-moeda { border-radius: 0; }
+.seletor-moeda .botao-moeda:first-child { border-radius: 8px 0 0 8px; }
+.seletor-moeda .botao-moeda:last-child { border-radius: 0 8px 8px 0; }
+
+.botao-moeda.ativo,
+.botao-principal {
+  background: var(--laranja);
+  border-color: var(--laranja);
+  color: #111;
+  font-weight: 600;
+}
+
+/* ===== Mensagem de erro ===== */
+.mensagem-erro {
+  margin: var(--espaco) calc(var(--espaco) * 1.5) 0;
+  padding: 12px var(--espaco);
+  border: 1px solid var(--queda);
+  border-radius: var(--raio);
+  background: rgba(239, 68, 68, 0.1);
+}
+
+/* ===== Conteúdo principal ===== */
+.conteudo {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: calc(var(--espaco) * 1.5);
+  display: grid;
+  gap: calc(var(--espaco) * 1.5);
+}
+
+/* Cartões: 4 colunas no computador; menos colunas em telas menores */
+.cartoes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--espaco);
+}
+
+.cartao,
+.painel {
+  background: var(--painel);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  padding: calc(var(--espaco) * 1.25);
+}
+
+.cartao h2 {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--texto-suave);
+}
+
+.valor {
+  margin: 8px 0 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+/* Classes usadas pelo JavaScript para colorir variações */
+.alta { color: var(--alta); }
+.queda { color: var(--queda); }
+
+.painel h2 {
+  font-size: 1.1rem;
+  margin-bottom: var(--espaco);
+}
+
+/* Altura fixa para os gráficos não "pularem" ao carregar */
+.area-grafico {
+  position: relative;
+  height: 320px;
+}
+
+/* ===== Seletor de período ===== */
+.seletor-periodo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-end;
+}
+
+.seletor-periodo label {
+  display: grid;
+  gap: 4px;
+  font-size: 0.875rem;
+  color: var(--texto-suave);
+}
+
+input[type="date"] {
+  font: inherit;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--borda);
+  background: var(--fundo);
+  color: var(--texto);
+  color-scheme: dark; /* calendário do navegador no modo escuro */
+}
+
+.atalhos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.dica { margin: 8px 0 var(--espaco); }
+
+/* ===== Estatísticas do período ===== */
+.estatisticas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  margin: var(--espaco) 0 0;
+}
+
+.estatisticas div {
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.estatisticas dt { font-size: 0.8rem; color: var(--texto-suave); }
+.estatisticas dd { margin: 4px 0 0; font-size: 1.1rem; font-weight: 600; }
+
+/* ===== Rodapé ===== */
+.rodape {
+  text-align: center;
+  padding: var(--espaco) 0 calc(var(--espaco) * 2);
+}
+
+/* ===== Celular ===== */
+@media (max-width: 600px) {
+  .area-grafico { height: 240px; }
+  .valor { font-size: 1.3rem; }
+}

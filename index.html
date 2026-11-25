@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard Bitcoin</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Cabeçalho: título, troca de moeda e horário da última atualização -->
+  <header class="cabecalho">
+    <h1><span class="logo">₿</span> Dashboard Bitcoin</h1>
+    <div class="cabecalho-acoes">
+      <div class="seletor-moeda" role="group" aria-label="Moeda">
+        <button type="button" class="botao-moeda ativo" data-moeda="brl">BRL</button>
+        <button type="button" class="botao-moeda" data-moeda="usd">USD</button>
+      </div>
+      <button type="button" id="botao-atualizar" class="botao-secundario">Atualizar</button>
+      <span id="ultima-atualizacao" class="texto-suave">Atualizado: —</span>
+    </div>
+  </header>
+
+  <!-- Área para mensagens de erro (fica escondida quando está tudo bem) -->
+  <div id="mensagem-erro" class="mensagem-erro" role="alert" hidden></div>
+
+  <main class="conteudo">
+    <!-- Cartões de resumo -->
+    <section class="cartoes" aria-label="Resumo">
+      <article class="cartao">
+        <h2>Preço atual</h2>
+        <p id="preco-atual" class="valor">—</p>
+      </article>
+      <article class="cartao">
+        <h2>Variação 24h</h2>
+        <p id="variacao-24h" class="valor">—</p>
+      </article>
+      <article class="cartao">
+        <h2>Variação 7 dias</h2>
+        <p id="variacao-7d" class="valor">—</p>
+      </article>
+      <article class="cartao">
+        <h2>Variação 1 ano</h2>
+        <p id="variacao-1a" class="valor">—</p>
+      </article>
+    </section>
+
+    <!-- Gráfico semanal -->
+    <section class="painel">
+      <h2>Últimos 7 dias</h2>
+      <div class="area-grafico">
+        <canvas id="grafico-semanal"></canvas>
+      </div>
+    </section>
+
+    <!-- Gráfico anual -->
+    <section class="painel">
+      <h2>Último ano</h2>
+      <div class="area-grafico">
+        <canvas id="grafico-anual"></canvas>
+      </div>
+    </section>
+
+    <!-- Histórico personalizado com seletor de período -->
+    <section class="painel">
+      <h2>Histórico personalizado</h2>
+
+      <form id="form-periodo" class="seletor-periodo">
+        <label>
+          De
+          <input type="date" id="data-inicio" required>
+        </label>
+        <label>
+          Até
+          <input type="date" id="data-fim" required>
+        </label>
+        <button type="submit" class="botao-principal">Ver período</button>
+      </form>
+
+      <div class="atalhos" role="group" aria-label="Atalhos de período">
+        <span class="texto-suave">Atalhos:</span>
+        <button type="button" class="botao-atalho" data-dias="30">30 dias</button>
+        <button type="button" class="botao-atalho" data-dias="90">90 dias</button>
+        <button type="button" class="botao-atalho" data-dias="180">6 meses</button>
+        <button type="button" class="botao-atalho" data-dias="365">1 ano</button>
+      </div>
+      <p class="texto-suave dica">A versão gratuita da CoinGecko mostra dados de até 1 ano atrás.</p>
+
+      <div class="area-grafico">
+        <canvas id="grafico-periodo"></canvas>
+      </div>
+
+      <dl class="estatisticas">
+        <div><dt>Mínimo</dt><dd id="estat-minimo">—</dd></div>
+        <div><dt>Máximo</dt><dd id="estat-maximo">—</dd></div>
+        <div><dt>Média</dt><dd id="estat-media">—</dd></div>
+        <div><dt>Variação no período</dt><dd id="estat-variacao">—</dd></div>
+      </dl>
+    </section>
+  </main>
+
+  <footer class="rodape texto-suave">
+    Dados fornecidos pela <a href="https://www.coingecko.com/" target="_blank" rel="noopener">CoinGecko</a>.
+  </footer>
+</body>
+</html>

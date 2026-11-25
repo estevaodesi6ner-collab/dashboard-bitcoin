@@ -122,8 +122,8 @@ Cada fase é pequena, testada no navegador e salva com um **commit** no Git (um 
 - **Pronto quando:** a pasta existe e o primeiro commit foi feito.
 
 ### Fase 1 — Esqueleto da página
-- [ ] `index.html` com cabeçalho, 4 cartões, 3 áreas de gráfico (`<canvas>`) e o seletor de datas.
-- [ ] `style.css` com tema escuro e grade responsiva (CSS Grid).
+- [x] `index.html` com cabeçalho, 4 cartões, 3 áreas de gráfico (`<canvas>`) e o seletor de datas.
+- [x] `style.css` com tema escuro e grade responsiva (CSS Grid).
 - **Pronto quando:** abrir `index.html` mostra o layout com espaços vazios, sem erros no console (F12).
 
 ### Fase 2 — Primeiros dados reais
