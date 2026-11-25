@@ -203,12 +203,30 @@ async function carregarSemanal() {
   }
 }
 
+// Gráfico do último ano + cartão "Variação 1 ano".
+async function carregarAnual() {
+  const variacaoEl = document.getElementById('variacao-1a');
+  variacaoEl.textContent = 'Carregando…';
+
+  try {
+    const url = `${URL_BASE}/coins/bitcoin/market_chart?vs_currency=${moedaAtual}&days=365`;
+    const dados = await buscarDados(url);
+
+    criarGrafico('grafico-anual', dados.prices, { unidade: 'month' });
+    mostrarVariacao(variacaoEl, calcularVariacao(dados.prices));
+  } catch (erro) {
+    variacaoEl.textContent = '—';
+    mostrarErro(erro.message);
+  }
+}
+
 // ===== Início =====
 
 function atualizarTudo() {
   esconderErro(); // limpa avisos antigos; cada seção mostra o seu se falhar
   atualizarResumo();
   carregarSemanal();
+  carregarAnual();
 }
 
 function iniciar() {

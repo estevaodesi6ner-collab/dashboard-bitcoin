@@ -138,7 +138,7 @@ Cada fase é pequena, testada no navegador e salva com um **commit** no Git (um 
 - **Pronto quando:** o gráfico dos 7 dias aparece e, ao passar o mouse, mostra data e preço.
 
 ### Fase 4 — Gráfico anual
-- [ ] `carregarAnual()` usando `days=365`, reaproveitando `criarGrafico`; preencher "Var. 1 ano".
+- [x] `carregarAnual()` usando `days=365`, reaproveitando `criarGrafico`; preencher "Var. 1 ano".
 - **Pronto quando:** o gráfico anual aparece com os meses no eixo X.
 
 ### Fase 5 — Seletor de período + histórico
@@ -152,6 +152,7 @@ Cada fase é pequena, testada no navegador e salva com um **commit** no Git (um 
 - [ ] Botão BRL/USD (refaz as buscas na outra moeda, usando o cache quando possível).
 - [ ] Ajustes para celular (testar no F12 → modo dispositivo).
 - [ ] Horário da "última atualização" e botão "Atualizar".
+- [ ] Nomes dos meses em português no eixo dos gráficos (hoje saem em inglês: "Nov/25").
 - [ ] `README.md` curto explicando como abrir e usar.
 - **Pronto quando:** tudo funciona no computador e no celular, sem erros no console.
 
