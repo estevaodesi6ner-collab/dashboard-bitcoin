@@ -133,8 +133,8 @@ Cada fase é pequena, testada no navegador e salva com um **commit** no Git (um 
 - **Pronto quando:** o preço real do Bitcoin aparece na tela.
 
 ### Fase 3 — Gráfico semanal
-- [ ] Criar `criarGrafico` com Chart.js (linha, eixo X de datas, tooltip com preço formatado).
-- [ ] `carregarSemanal()` usando `days=7`; preencher o cartão "Var. 7 dias".
+- [x] Criar `criarGrafico` com Chart.js (linha, eixo X de datas, tooltip com preço formatado).
+- [x] `carregarSemanal()` usando `days=7`; preencher o cartão "Var. 7 dias".
 - **Pronto quando:** o gráfico dos 7 dias aparece e, ao passar o mouse, mostra data e preço.
 
 ### Fase 4 — Gráfico anual
