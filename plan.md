@@ -152,11 +152,11 @@ Cada fase é pequena, testada no navegador e salva com um **commit** no Git (um 
 - **Pronto quando:** escolher datas válidas atualiza o gráfico e a tabela; datas inválidas mostram aviso claro.
 
 ### Fase 6 — Acabamento
-- [ ] Botão BRL/USD (refaz as buscas na outra moeda, usando o cache quando possível).
-- [ ] Ajustes para celular (testar no F12 → modo dispositivo).
-- [ ] Horário da "última atualização" e botão "Atualizar".
-- [ ] Nomes dos meses em português no eixo dos gráficos (hoje saem em inglês: "Nov/25").
-- [ ] `README.md` curto explicando como abrir e usar.
+- [x] Botão BRL/USD (refaz as buscas na outra moeda, usando o cache quando possível).
+- [x] Ajustes para celular (testar no F12 → modo dispositivo).
+- [x] Horário da "última atualização" e botão "Atualizar".
+- [x] Nomes dos meses em português no eixo dos gráficos (rótulos feitos com `formatarRotuloEixo`).
+- [x] `README.md` curto explicando como abrir e usar.
 - **Pronto quando:** tudo funciona no computador e no celular, sem erros no console.
 
 ---

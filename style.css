@@ -215,6 +215,18 @@ input[type="date"] {
 
 /* ===== Celular ===== */
 @media (max-width: 600px) {
+  .cabecalho { padding: 12px var(--espaco); }
+  .cabecalho h1 { font-size: 1.25rem; }
+  .conteudo { padding: var(--espaco); gap: var(--espaco); }
+
+  /* Cartões em 2 colunas no celular */
+  .cartoes { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .cartao, .painel { padding: 14px; }
+  .valor { font-size: 1.1rem; }
+
   .area-grafico { height: 240px; }
-  .valor { font-size: 1.3rem; }
+
+  /* Campos de data dividem a largura da tela; botão ocupa a linha inteira */
+  .seletor-periodo label { flex: 1 1 140px; }
+  .seletor-periodo .botao-principal { flex: 1 1 100%; }
 }

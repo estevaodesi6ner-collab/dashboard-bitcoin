@@ -75,6 +75,19 @@ function textoParaData(texto) {
   return new Date(ano, mes - 1, dia);
 }
 
+// Rótulo do eixo X em português, conforme a "régua" do gráfico. Ex.: "14:00", "25/11", "nov/25".
+function formatarRotuloEixo(ms, unidade) {
+  const data = new Date(ms);
+  if (unidade === 'hour') {
+    return data.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+  }
+  if (unidade === 'month') {
+    const mes = data.toLocaleDateString('pt-BR', { month: 'short' }).replace('.', '');
+    return `${mes}/${String(data.getFullYear()).slice(-2)}`;
+  }
+  return data.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
+}
+
 function diasAtras(quantidade) {
   return new Date(Date.now() - quantidade * MS_POR_DIA);
 }
@@ -178,11 +191,12 @@ function criarGrafico(idCanvas, precos, opcoes = {}) {
       scales: {
         x: {
           type: 'time',
-          time: {
-            unit: opcoes.unidade || 'day',
-            displayFormats: { hour: 'HH:mm', day: 'dd/MM', month: 'MMM/yy' },
+          time: { unit: opcoes.unidade || 'day' },
+          ticks: {
+            color: COR_TEXTO,
+            maxTicksLimit: 12,
+            callback: (valor) => formatarRotuloEixo(valor, opcoes.unidade || 'day'),
           },
-          ticks: { color: COR_TEXTO, maxTicksLimit: 12 },
           grid: { color: COR_GRADE },
         },
         y: {
@@ -232,8 +246,10 @@ async function carregarSemanal() {
   variacaoEl.textContent = 'Carregando…';
 
   try {
-    const url = `${URL_BASE}/coins/bitcoin/market_chart?vs_currency=${moedaAtual}&days=7`;
+    const moeda = moedaAtual;
+    const url = `${URL_BASE}/coins/bitcoin/market_chart?vs_currency=${moeda}&days=7`;
     const dados = await buscarDados(url);
+    if (moeda !== moedaAtual) return; // a moeda mudou enquanto esperávamos: ignora a resposta antiga
 
     precosSemanais = dados.prices;
     criarGrafico('grafico-semanal', dados.prices, { unidade: 'day', mostrarHora: true });
@@ -250,8 +266,10 @@ async function carregarAnual() {
   variacaoEl.textContent = 'Carregando…';
 
   try {
-    const url = `${URL_BASE}/coins/bitcoin/market_chart?vs_currency=${moedaAtual}&days=365`;
+    const moeda = moedaAtual;
+    const url = `${URL_BASE}/coins/bitcoin/market_chart?vs_currency=${moeda}&days=365`;
     const dados = await buscarDados(url);
+    if (moeda !== moedaAtual) return; // a moeda mudou enquanto esperávamos: ignora a resposta antiga
 
     precosAnuais = dados.prices;
     criarGrafico('grafico-anual', dados.prices, { unidade: 'month' });
@@ -408,8 +426,28 @@ async function atualizarTudo() {
   carregarPeriodo();
 }
 
+// Troca entre real (BRL) e dólar (USD) e recarrega tudo na nova moeda.
+function trocarMoeda(novaMoeda) {
+  if (novaMoeda === moedaAtual) return;
+  moedaAtual = novaMoeda;
+
+  document.querySelectorAll('.botao-moeda').forEach((botao) => {
+    const ativo = botao.dataset.moeda === novaMoeda;
+    botao.classList.toggle('ativo', ativo);
+    botao.setAttribute('aria-pressed', ativo);
+  });
+
+  // Esquece os dados da moeda anterior para o histórico não misturar moedas.
+  precosSemanais = null;
+  precosAnuais = null;
+  atualizarTudo();
+}
+
 function iniciar() {
   document.getElementById('botao-atualizar').addEventListener('click', atualizarTudo);
+  document.querySelectorAll('.botao-moeda').forEach((botao) => {
+    botao.addEventListener('click', () => trocarMoeda(botao.dataset.moeda));
+  });
   configurarSeletorPeriodo();
   atualizarTudo();
 }
