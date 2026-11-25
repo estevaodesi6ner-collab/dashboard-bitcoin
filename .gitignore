@@ -1,0 +1,6 @@
+# Arquivos do editor e do sistema que não fazem parte do projeto
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
